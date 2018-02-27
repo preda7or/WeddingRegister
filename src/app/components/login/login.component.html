@@ -1,0 +1,16 @@
+<div class="card rgba-black-light" id="login-card">
+  <div class="card-body ">
+    <h4 class="card-title">
+      Login
+    </h4>
+    <div class="card-text">
+      <form class="md-form grey-text text-center" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <i class="fa fa-key prefix"></i>
+        <input type="text" id="code" name="invitationCode" class="form-control my-5" #code="ngModel" [(ngModel)]="formdata.invitationCode"
+          [ngClass]="{ 'valid': loginForm.valid, 'invalid': code.value && !loginForm.valid }" pattern="[a-zA-Z0-9]{6}" required>
+        <label for="code" data-error="Your code is not valid, please try again!" data-success="Ok, this will work, just press Login!">Here goes the code we gave.</label>
+        <input type="submit" value="Login" class="btn btn-rounded purple-gradient mb-0" [disabled]="!loginForm.valid">
+      </form>
+    </div>
+  </div>
+</div>

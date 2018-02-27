@@ -1,0 +1,60 @@
+<!--Navbar-->
+<nav id="top-nav" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" routerLink="/">Teo &amp; Gábor's Wedding</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/login">login</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/login/123456">login/123456</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/login/2345">login/2345</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/in/decision">decision</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/in/sohappy">sohappy</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/in/sosorry">sosorry</a>
+                </li>
+
+                <!-- Dropdown -->
+                <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" routerLink="/1234">Action</a>
+                </div>
+            </li> -->
+
+            </ul>
+            <!-- Links -->
+
+            <!-- Search form -->
+            <!-- <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form> -->
+        <a class="btn btn-outline-white btn-md my-0 py-2 waves-effect" (click)="onLogout()" *ngIf="showLogout">Logout</a>
+        </div>
+        <!-- Collapsible content -->
+    </div>
+
+</nav>
+<!--/.Navbar-->

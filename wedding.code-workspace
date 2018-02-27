@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "./"
+		},
+		{
+			"path": "src/app"
+		}
+	],
+	"settings": {
+		"tslint.autoFixOnSave": true,
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"prettier.eslintIntegration": false,
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "expanded",
+				"extensionName": ".css",
+				"savePath": "dist/style"
+			}
+		],
+		"liveSassCompile.settings.includeItems": null,
+		"javascript.implicitProjectConfig.experimentalDecorators": true
+	}
+}

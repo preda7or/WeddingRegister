@@ -1,0 +1,87 @@
+// // @import url(https://fonts.googleapis.com/css?family=Roboto);
+// /* custom font icons */
+// // @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+// /* @import "font-icons/style.css"; */
+
+// a {
+//   color: #ff4081;
+//   text-decoration: none;
+// }
+
+// a:hover {
+//   text-decoration: underline;
+// }
+
+// html {
+//   font-family: 'Roboto', sans-serif;
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// body,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin: 0;
+// }
+
+// body {
+//   font-size: 15px;
+//   line-height: 24px;
+// }
+
+// /* Used in StylesOverridingCssExample.js */
+// .styles-overriding-css-example {
+//   width: 50% !important;
+//   margin: 0 auto !important;
+//   border: 2px solid #ff9800 !important;
+//   background-color: #ffd699 !important;
+// }
+
+// [flex] {
+//   display: flex;
+// }
+
+html,
+body,
+header,
+#intro {
+  height: 100%;
+}
+
+.md-form .prefix {
+  left: 0;
+}
+
+.top-nav-collapse {
+  background-color: darkgoldenrod;
+}
+
+#intro {
+  background: url(assets/img/wedding-rings.jpg) no-repeat center center fixed;
+  background-size: cover;
+
+  app-login {
+    width: 50%;
+    label {
+      white-space: nowrap;
+    }
+
+    label:not(.active) {
+      color: rgba($color: white, $alpha: 0.6);
+    }
+    input[type='text'] {
+      // background-clip: content-box;
+      // background-color: rgba($color: white, $alpha: 0.05);
+      color: white;
+      text-align: center;
+      font-size: 2em;
+    }
+    input[type='submit'] {
+      text-align: center;
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+body {
+  overflow-y: scroll;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-overlay .preloader-wrapper {
+  font-size: 0;
+}

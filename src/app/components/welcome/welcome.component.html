@@ -1,0 +1,18 @@
+<div class="col-md-10 text-center">
+
+    <!-- Heading -->
+    <h2 class="display-3 font-bold white-text mb-2 wow zoomInDown">Hi {{ (data | async)?.name }}</h2>
+
+    <!-- Divider -->
+    <hr class="hr-light">
+
+    <!-- Description -->
+    <h4 class="white-text my-4">Thank you for visiting our site. Let us start with the process!</h4>
+    <a routerLink="/attend" class="btn btn-rounded waves-effect waves-light btn-success">Attend
+        <i class="fa fa-check-circle ml-2"></i>
+    </a>
+    <a routerLink="/skip" class="btn btn-rounded waves-effect waves-light btn-danger">Skip
+        <i class="fa fa-times-circle ml-2"></i>
+    </a>
+
+</div>
