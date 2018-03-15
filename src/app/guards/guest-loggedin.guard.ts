@@ -5,7 +5,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivateChild,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,24 +19,30 @@ export class GuestLoggedinGuard implements CanActivateChild {
   constructor(
     private redirect: RedirectingService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   canActivateChild(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): boolean | Promise<boolean> | Observable<boolean> {
     //
-    const isIn = this.authService.isLoggedIn();
-    const falseResult = () => false;
+    const isIn = this.authService.isLoggedIn;
+    const result = () => false;
 
-    logger.guard('GuestLoggedinGuard -', state.url, '| is logged in:', isIn);
+    logger.guard(
+      'GuestLoggedinGuard -',
+      state.url,
+      route.routeConfig,
+      '| is logged in:',
+      isIn,
+    );
 
     if (!isIn) {
       // return false;
-      return this.redirect
-        .toPublicDomain('loggedin guard bounce back')
-        .then(falseResult, falseResult);
+      this.redirect.toPublicDomain('loggedin guard bounce back');
+      // .then(result, result);
+      return false;
     }
 
     return true;

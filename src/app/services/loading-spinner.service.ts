@@ -2,15 +2,17 @@ import '../misc/observable-case';
 
 import { Injectable, OnDestroy } from '@angular/core';
 import {
+  ActivatedRoute,
   NavigationCancel,
   NavigationEnd,
   NavigationStart,
-  Router
+  Router,
 } from '@angular/router';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
+import 'jquery';
 import { Subscription } from 'rxjs/Subscription';
 
-import { logger } from '../misc/console-logging';
+// import { logger } from '../misc/console-logging';
 
 @Injectable()
 export class LoadingSpinnerService implements OnDestroy {
@@ -21,15 +23,15 @@ export class LoadingSpinnerService implements OnDestroy {
   private sub: Subscription;
   private state: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.sub = this.router.events
       .doCondition(
         e => e instanceof NavigationStart,
-        () => this.showLoadingOverlay('nav start')
+        () => this.showLoadingOverlay('nav start'),
       )
       .doCondition(
         e => e instanceof NavigationEnd || e instanceof NavigationCancel,
-        () => this.hideLoadingOverlay('nav end')
+        () => this.hideLoadingOverlay('nav end'),
       )
       .subscribe();
   }
@@ -40,7 +42,7 @@ export class LoadingSpinnerService implements OnDestroy {
     }
 
     this.state = true;
-    logger.default('showing spinner -', reason);
+    // logger.default('showing spinner -', reason);
     $(this.elementId)
       .stop()
       .show()
@@ -53,8 +55,8 @@ export class LoadingSpinnerService implements OnDestroy {
     }
 
     this.state = false;
-    logger.default('hiding spinner - ', reason);
-    $(this.elementId).fadeOut('slow', el => $(el).hide());
+    // logger.default('hiding spinner - ', reason);
+    $(this.elementId).fadeOut('slow', () => $(this).hide());
   }
 
   ngOnDestroy() {

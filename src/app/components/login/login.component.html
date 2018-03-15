@@ -1,16 +1,30 @@
-<div class="card rgba-black-light" id="login-card">
-  <div class="card-body ">
-    <h4 class="card-title">
-      Login
-    </h4>
-    <div class="card-text">
-      <form class="md-form grey-text text-center" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-        <i class="fa fa-key prefix"></i>
-        <input type="text" id="code" name="invitationCode" class="form-control my-5" #code="ngModel" [(ngModel)]="formdata.invitationCode"
-          [ngClass]="{ 'valid': loginForm.valid, 'invalid': code.value && !loginForm.valid }" pattern="[a-zA-Z0-9]{6}" required>
-        <label for="code" data-error="Your code is not valid, please try again!" data-success="Ok, this will work, just press Login!">Here goes the code we gave.</label>
-        <input type="submit" value="Login" class="btn btn-rounded purple-gradient mb-0" [disabled]="!loginForm.valid">
-      </form>
+<div class="flex-center">
+  <div class="card rgba-black-light rounded loading-overlay-container" id="login-card">
+
+    <div class="loading-overlay rounded animated align-items-start">
+      <div class="progress transparent rounded">
+        <div class="indeterminate lime darken-4"></div>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <h4 class="card-title">
+        Login
+      </h4>
+      <div class="card-text">
+        <form class="text-center" (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
+          <div class="form-group md-form">
+            <i class="fa fa-key prefix"></i>
+            <input type="text" id="code" name="invitationCode" class="form-control my-5" formControlName="code" minlength="6" maxlength="6"
+              appFillFromParams="id" allowedChars="[a-zA-Z0-9]" required appLoginInput textWrong="This does not look like a code"
+              textSuccess="This seems like a good code, press the button">
+            <label for="code" data-error="Your code is not valid, please try again!" data-success="Ok, this will work, just press Login!">Here goes the code we gave.</label>
+          </div>
+          <input type="submit" value="Login" class="btn btn-rounded mb-0 btn-outline-white" [disabled]="loginForm.invalid" [class.btn-outline-black]="loginForm.valid"
+            [class.peach-gradient]="loginForm.valid">
+        </form>
+      </div>
     </div>
   </div>
 </div>

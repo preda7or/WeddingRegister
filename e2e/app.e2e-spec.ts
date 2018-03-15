@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('crossover-test-stefang App', () => {
+describe('Wedding App', () => {
   let page: AppPage;
 
   beforeEach(() => {

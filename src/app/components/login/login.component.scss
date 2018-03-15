@@ -1,0 +1,22 @@
+:host {
+  width: 50%;
+  label {
+    white-space: nowrap;
+  }
+
+  i.fa,
+  label {
+    color: rgba($color: white, $alpha: 0.6) !important;
+  }
+  input[type='text'] {
+    // background-clip: content-box;
+    // background-color: rgba($color: white, $alpha: 0.05);
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+  input[type='submit'] {
+    text-align: center;
+    width: auto;
+  }
+}

@@ -1,54 +1,18 @@
-// // @import url(https://fonts.googleapis.com/css?family=Roboto);
-// /* custom font icons */
-// // @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-// /* @import "font-icons/style.css"; */
-
-// a {
-//   color: #ff4081;
-//   text-decoration: none;
-// }
-
-// a:hover {
-//   text-decoration: underline;
-// }
-
-// html {
-//   font-family: 'Roboto', sans-serif;
-//   -webkit-font-smoothing: antialiased;
-// }
-
-// body,
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//   margin: 0;
-// }
-
-// body {
-//   font-size: 15px;
-//   line-height: 24px;
-// }
-
-// /* Used in StylesOverridingCssExample.js */
-// .styles-overriding-css-example {
-//   width: 50% !important;
-//   margin: 0 auto !important;
-//   border: 2px solid #ff9800 !important;
-//   background-color: #ffd699 !important;
-// }
-
-// [flex] {
-//   display: flex;
-// }
-
-html,
-body,
-header,
-#intro {
+html
+, body
+// , header
+, app-intro {
   height: 100%;
+}
+
+.navbar-brand {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxzdHlsZT4uYXtmaWxsOm5vbmU7c3Ryb2tlOiNGQURBNUU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDoycHg7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZS8+PHBhdGggY2xhc3M9ImEiIGQ9Ik01NSwyMFY0NUw0NSw1NUgxM2E0LDQsMCwwLDEtNC00VjIwWiIvPjxwYXRoIGNsYXNzPSJhIiBkPSJNNDIuODEsMjcuNjlhNy42NCw3LjY0LDAsMCwwLTEwLjgxLDBoMGE3LjY0LDcuNjQsMCwwLDAtMTAuODEsMGMtMywzLTIuMTUsOC4zNS4xOSwxMS44NnM4LjE2LDgsMTAsOS4zM2ExLDEsMCwwLDAsMS4xNywwYzEuODYtMS4zNyw3LjY3LTUuNzksMTAtOS4zM1M0NS43OSwzMC42OCw0Mi44MSwyNy42OVoiLz48cGF0aCBjbGFzcz0iYSIgZD0iTTU1LDQ1LDQ1LDU1VjQ5YTQsNCwwLDAsMSw0LTRaIi8+PHBhdGggY2xhc3M9ImEiIGQ9Ik01MSw5YTQsNCwwLDAsMSw0LDR2N0g5VjEzYTQsNCwwLDAsMSw0LTQiLz48bGluZSBjbGFzcz0iYSIgeDE9IjE4Ljc1IiB4Mj0iNDUuNSIgeTE9IjkiIHkyPSI5Ii8+PHJlY3QgY2xhc3M9ImEiIGhlaWdodD0iOCIgcng9IjIuNSIgcnk9IjIuNSIgd2lkdGg9IjUiIHg9IjEzIiB5PSI1Ii8+PHJlY3QgY2xhc3M9ImEiIGhlaWdodD0iOCIgcng9IjIuNSIgcnk9IjIuNSIgd2lkdGg9IjUiIHg9IjQ2IiB5PSI1Ii8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 50px;
+}
+.navbar-dark {
+  background-color: rgba($color: black, $alpha: 0.4);
 }
 
 .md-form .prefix {
@@ -59,29 +23,13 @@ header,
   background-color: darkgoldenrod;
 }
 
-#intro {
-  background: url(assets/img/wedding-rings.jpg) no-repeat center center fixed;
-  background-size: cover;
-
-  app-login {
-    width: 50%;
-    label {
-      white-space: nowrap;
-    }
-
-    label:not(.active) {
-      color: rgba($color: white, $alpha: 0.6);
-    }
-    input[type='text'] {
-      // background-clip: content-box;
-      // background-color: rgba($color: white, $alpha: 0.05);
-      color: white;
-      text-align: center;
-      font-size: 2em;
-    }
-    input[type='submit'] {
-      text-align: center;
-      width: auto;
-    }
-  }
+.flex-v-center {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
+
+// app-intro {
+//   background: url(assets/img/wedding-rings.jpg) no-repeat center center fixed;
+//   background-size: cover;
+// }

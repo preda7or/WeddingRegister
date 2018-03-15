@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+
+import { RedirectingService } from './../../services/redirecting.service';
 
 @Component({
   selector: 'app-public-page',
@@ -8,7 +8,9 @@ import { Subscription } from 'rxjs/Subscription';
   styles: []
 })
 export class PublicPageComponent implements OnInit {
-  constructor() {}
+  constructor(private redirect: RedirectingService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.redirect.introToLogin('public page was hit');
+  }
 }

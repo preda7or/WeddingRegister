@@ -2,57 +2,55 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { logger } from '../misc/console-logging';
-import { AuthService } from '../services/auth.service';
+import { GuestService } from '../services/guest.service';
 import { RedirectingService } from '../services/redirecting.service';
 
 @Injectable()
 export class GuestComingGuard implements CanActivate {
-  constructor(
-    private redirect: RedirectingService,
-    private authService: AuthService
-  ) {}
+  constructor(private redirect: RedirectingService, private gs: GuestService) {}
 
   private _actOnComingState(
     coming: boolean | undefined,
-    options: { [key: string]: string | boolean }
+    options: { [key: string]: string | boolean },
   ): boolean | Promise<boolean> {
     const guestComing = String(coming);
     const action: undefined | boolean | string = options[guestComing];
-    const trueResult = () => {
-      console.groupEnd();
-      return true;
-    };
-
-    console.group('GuestComingGuard');
-    logger.guard(` - guest coming: ${guestComing} | action: ${action}`);
+    const trueResult = () => true;
 
     if (typeof action === 'string') {
-      // return this.redirect.to(action);
-      this.redirect.to(action);
-      console.groupEnd();
+      switch (action) {
+        case 'sosorry':
+          this.redirect.toSoSorry('GuestComingGuard');
+          break;
+        case 'sohappy':
+          this.redirect.toSoHappy('GuestComingGuard');
+          break;
+        default:
+          this.redirect.toDecision('GuestComingGuard');
+          break;
+      }
+
       return false;
     }
 
-    console.groupEnd();
+    if (action === undefined) {
+      return true;
+    }
+
     return !!action;
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const config = route.data.coming;
 
-    // return this.authService
-    //   .getGuest()
-    //   .map(guest => this._actOnComingState(guest, config));
-
-    const coming = this.authService.isComing();
+    const coming = this.gs.isComing();
     return this._actOnComingState(coming, config);
   }
 }

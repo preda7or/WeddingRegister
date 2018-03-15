@@ -1,3 +1,147 @@
-<p>
-  form works!
-</p>
+<ng-template [ngIf]="uid!=null">
+  <a class="float-right badge text-white" [ngClass]="{'badge-danger':saveState=='error','badge-warning':saveState=='dirty','badge-success':saveState=='saved'}"
+    (click)="forceSave()">
+    <i class="fa fa-warning fa-fw" [ngClass]="{'fa-warning':saveState=='error','fa-pencil':saveState=='dirty','fa-save':saveState=='saved'}"></i>
+  </a>
+
+  <h2 i18n>Form</h2>
+
+  <form [formGroup]="guestForm" novalidate>
+    <!-- Vertical Steppers -->
+    <!-- <div class="row m-t-1"> -->
+    <!-- <div class="col-md-12"> -->
+
+    <!-- Stepers Wrapper -->
+    <ul class="stepper stepper-vertical">
+
+      <!-- First Step -->
+      <li routerLinkActive="active">
+        <a routerLink="../1">
+          <span class="circle">1</span>
+          <span class="label" i18n>First step</span>
+        </a>
+        <div @slideInOut *ngIf="step===1" class="step-content grey lighten-3">
+
+          <p i18n>How big is your gang?</p>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="md-form">
+                <label class="col-6" for="question0" i18n>kids (&lt; 5)</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="md-form">
+                <input class="col-6" type="number" formControlName="question0" min="0" max="9">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="question1" formControlName="question1">
+            <label class="form-check-label" for="question1" i18n>
+              Question 1
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="question2" formControlName="question2">
+            <label class="form-check-label" for="question2" i18n>
+              Question 2
+            </label>
+          </div>
+          <div class="md-form">
+            <input class="form-control" type="text" value="" id="question3" formControlName="question3">
+          </div>
+
+          <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse cupiditate voluptate facere iusto quaerat vitae
+            excepturi, accusantium ut aliquam repellat atque nesciunt nostrum similique. Inventore nostrum ut, nobis porro
+            sapiente.
+          </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error excepturi veniam nemo repellendus, distinctio
+            soluta vitae at sit saepe. Optio eaque quia excepturi adipisci pariatur totam, atque odit fugiat.</p>
+          <p class="mb-0">Deserunt voluptatem illum quae nisi soluta eum perferendis nesciunt asperiores tempore saepe reiciendis, vero quod
+            a dolor corporis natus qui magni quas fuga rem excepturi laboriosam. Quisquam expedita ab fugiat.</p>
+        </div>
+      </li>
+
+      <!-- Second Step -->
+      <li routerLinkActive="active">
+
+        <!--Section Title -->
+        <a routerLink="../2">
+          <span class="circle">2</span>
+          <span class="label">Second step</span>
+        </a>
+
+        <!-- Section Description -->
+        <div @slideInOut *ngIf="step===2" class="step-content grey lighten-3">
+
+          <div class="form-check">
+            <input class="with-gap" type="radio" [value]="1" id="question4" formControlName="question4">
+            <label class="form-check-label" for="question4">
+              Question 1
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="with-gap" type="radio" [value]="2" id="question5" formControlName="question4">
+            <label class="form-check-label" for="question5">
+              Question 2
+            </label>
+          </div>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" formControlName="question5">
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+          <div class="md-form">
+            <input class="form-control" type="text" value="" id="question6" formControlName="question6">
+          </div>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse cupiditate voluptate facere iusto quaerat vitae
+            excepturi, accusantium ut aliquam repellat atque nesciunt nostrum similique. Inventore nostrum ut, nobis porro
+            sapiente.
+          </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore error excepturi veniam nemo repellendus, distinctio
+            soluta vitae at sit saepe. Optio eaque quia excepturi adipisci pariatur totam, atque odit fugiat.</p>
+          <p>Deserunt voluptatem illum quae nisi soluta eum perferendis nesciunt asperiores tempore saepe reiciendis, vero quod
+            a dolor corporis natus qui magni quas fuga rem excepturi laboriosam. Quisquam expedita ab fugiat.</p>
+        </div>
+      </li>
+
+      <!-- Third Step -->
+      <li class="warning" routerLinkActive="active">
+        <a routerLink="../3">
+          <span class="circle">
+            <i class="fa fa-warning"></i>
+          </span>
+          <span class="label">Third step</span>
+        </a>
+      </li>
+
+      <!-- Fourth Step -->
+      <li routerLinkActive="active">
+        <a routerLink="../4">
+          <span class="circle">4</span>
+          <span class="label">Fourth step</span>
+        </a>
+      </li>
+
+    </ul>
+    <!-- /.Stepers Wrapper -->
+
+    <!-- </div> -->
+    <!-- </div> -->
+
+    <!-- Steppers Navigation -->
+    <div class="row m-t-1">
+      <div class="col-md-12 text-right">
+        <button [routerLink]="['../',step+1]" class="btn btn-primary waves-light" [class.disabled]="step===lastStep">{{ step===lastStep ? 'That was the last one!' : 'Next' }}</button>
+      </div>
+    </div>
+    <!-- /.Vertical Steppers -->
+  </form>
+
+</ng-template>

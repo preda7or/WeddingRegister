@@ -6,10 +6,14 @@
 <div class="row justify-content-center">
   <div class="col-xs-4 offset-xs-2">
     <a (click)="onComing($event)" class="btn btn-rounded btn-success">
-      <i class="fa fa-thumbs-up"></i> Yes, I will be there!</a>
+      <i class="fa fa-thumbs-up mr-2"></i> Yes, I will be there!</a>
   </div>
   <div class="col-xs-4">
     <a (click)="onNotComing($event)" class="btn btn-rounded btn-danger">
-      <i class="fa fa-frown"></i> No, cannot make it.</a>
+      <i class="fa fa-exclamation mr-2"></i> No, cannot make it.</a>
+  </div>
+  <div class="col-xs-4">
+    <a (click)="onUndecided($event)" class="btn btn-rounded btn-warning">
+      <i class="fa fa-question mr-2"></i> Don't know yet.</a>
   </div>
 </div>

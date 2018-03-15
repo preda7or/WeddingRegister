@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
@@ -18,10 +18,10 @@ export class GuestAutoLoginGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const guestId = route.paramMap.get('id');
-    const isIn = this.authService.isLoggedIn();
+    const isIn = this.authService.isLoggedIn;
     const trueResult = () => true;
     const falseResult = () => false;
 
@@ -29,7 +29,7 @@ export class GuestAutoLoginGuard implements CanActivate {
       'GuestAutoLoginGuard - login id:',
       guestId,
       '| navigated:',
-      this.router.navigated
+      this.router.navigated,
     );
 
     if (guestId == null) {
@@ -39,6 +39,7 @@ export class GuestAutoLoginGuard implements CanActivate {
         return true;
       }
 
+      // Auto logout
       // return this.authService
       //   .getGuest()
       //   .map(guest => guest != null)

@@ -19,6 +19,7 @@
 			}
 		],
 		"liveSassCompile.settings.includeItems": null,
-		"javascript.implicitProjectConfig.experimentalDecorators": true
+		"javascript.implicitProjectConfig.experimentalDecorators": true,
+		"prettier.trailingComma": "all"
 	}
 }

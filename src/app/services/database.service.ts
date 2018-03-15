@@ -1,44 +1,53 @@
 import '@firebase/firestore';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 
 import { Guest } from '../models/guest-ao';
 
 @Injectable()
 export class DatabaseService {
-  private collection: AngularFirestoreCollection<Guest>;
-
-  constructor(private afs: AngularFirestore) {
-    this.collection = this.afs.collection('guests');
+  get delete() {
+    return firebase.firestore.FieldValue.delete();
   }
 
-  // FIXME: Delete function
-  public getGuests(): Observable<Guest[]> {
-    return this.collection.valueChanges();
+  constructor(private afs: AngularFirestore) {}
+
+  public updateDoc(docRef: string, content: {}) {
+    return this.afs.doc(docRef).update(content);
   }
 
-  public getGuestById(docId: string): Observable<Guest> {
-    let doc: AngularFirestoreDocument<Guest>;
+  public getDoc<T>(docRef: string): Observable<T> {
+    let doc: AngularFirestoreDocument<T>;
+    doc = this.afs.doc(docRef);
 
-    doc = this.afs.doc('guests/' + docId);
-    return doc
-      .valueChanges()
-      .do(guest => console.warn('DatabaseService getGuestById - guest:', guest))
-      .map(
-        guest => (guest != null ? Object.assign(guest, { id: docId }) : guest)
-      );
+    return doc.valueChanges().catch((err): Observable<T> => {
+      console.error('Error getting doc:', docRef, '| error:', err);
+      return null;
+    });
   }
 
-  // public getGuest(guestId: string): Observable<Guest> {
+  // public getGuest(userId: string): Observable<void | Guest> {
   //   let doc: AngularFirestoreDocument<Guest>;
 
-  //   doc = this.afs.doc('guests/' + guestId);
-  //   return doc.valueChanges();
+  //   if (userId == null) {
+  //     return Observable.of(null);
+  //   }
+
+  //   doc = this.afs.doc('guests/' + userId);
+  //   return doc
+  //     .valueChanges()
+  //     .do(guest => console.warn('DatabaseService getGuestById - guest:', guest))
+  //     .map(guest => (guest != null ? { id: userId, ...guest } : guest))
+  //     .catch(err => [console.error('getGuestById:', err)]);
   // }
 }

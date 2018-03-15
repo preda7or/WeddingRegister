@@ -1,0 +1,19 @@
+ul.stepper {
+  padding-left: 0;
+
+  a {
+    padding: 1em;
+
+    .circle {
+      width: 2rem;
+      height: 2rem;
+      padding: 0.1rem 0 0 0.1rem;
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
+
+    .label {
+      line-height: 2rem;
+    }
+  }
+}

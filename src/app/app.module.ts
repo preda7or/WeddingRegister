@@ -9,6 +9,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AnimatedHeaderComponent } from './components/animated-header/animated-header.component';
 import { AuthenticatedPageComponent } from './components/authenticated-page/authenticated-page.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { DecisionComponent } from './components/decision/decision.component';
@@ -19,19 +20,21 @@ import { IntroComponent } from './components/intro/intro.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PublicPageComponent } from './components/public-page/public-page.component';
+import { SoHappyComponent } from './components/so-happy/so-happy.component';
 import { SoSorryComponent } from './components/so-sorry/so-sorry.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { FillFromParamsDirective } from './directives/fill-from-params.directive';
+import { LoginInputDirective } from './directives/login-input.directive';
 import { firebaseConfig } from './firebase-config';
 import { GuestAutoLoginGuard } from './guards/guest-autologin.guard';
 import { GuestComingGuard } from './guards/guest-coming.guard';
 import { GuestLoggedinGuard } from './guards/guest-loggedin.guard';
-import { DatabaseService } from './services/database.service';
-
-import { LoadingSpinnerService } from './services/loading-spinner.service';
-
-import { RedirectingService } from './services/redirecting.service';
 import { AuthService } from './services/auth.service';
+import { DatabaseService } from './services/database.service';
+import { LoadingSpinnerService } from './services/loading-spinner.service';
+import { RedirectingService } from './services/redirecting.service';
+import { GuestService } from './services/guest.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,11 @@ import { AuthService } from './services/auth.service';
     IntroComponent,
     HelloComponent,
     FormComponent,
-    SoSorryComponent
+    SoSorryComponent,
+    LoginInputDirective,
+    FillFromParamsDirective,
+    AnimatedHeaderComponent,
+    SoHappyComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,24 +64,25 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig), // Add this
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   providers: [
     AuthService,
     DatabaseService,
+    GuestService,
     LoadingSpinnerService,
     GuestLoggedinGuard,
     GuestComingGuard,
     GuestAutoLoginGuard,
-    RedirectingService
+    RedirectingService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(
-    private loader: LoadingSpinnerService,
-    private auth: AuthService
+    private spinner: LoadingSpinnerService,
+    private auth: AuthService,
   ) {}
 }

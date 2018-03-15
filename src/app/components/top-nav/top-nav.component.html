@@ -12,7 +12,7 @@
         </button>
 
         <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div #collapsible class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
                     <a class="nav-link" routerLink="/login/123456">login/123456</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="/login/2345">login/2345</a>
+                    <a class="nav-link" routerLink="/login/234567">login/234567</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="/in/decision">decision</a>
@@ -51,7 +51,7 @@
             <!-- <form class="form-inline">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         </form> -->
-        <a class="btn btn-outline-white btn-md my-0 py-2 waves-effect" (click)="onLogout()" *ngIf="showLogout">Logout</a>
+        <a class="btn btn-outline-white btn-md my-0 py-2 waves-effect" (click)="onLogout()" *ngIf="showLogout | async">Logout</a>
         </div>
         <!-- Collapsible content -->
     </div>

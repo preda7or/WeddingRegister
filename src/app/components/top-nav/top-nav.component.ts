@@ -1,25 +1,55 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+import { AuthService } from '../../services/auth.service';
+import { GuestService } from '../../services/guest.service';
+
+import 'jquery';
+// import * as $ from 'jquery';
+
+// interface BootstrapJQuery extends JQuery {
+//   collapse(action: string): JQuery;
+// }
 
 @Component({
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
-  styleUrls: ['./top-nav.component.css']
 })
 export class TopNavComponent implements OnInit {
   //
   showLogout: Observable<boolean>;
 
+  @ViewChild('collapsible') private collapsibleElement: ElementRef;
   @Input() title: string;
 
-  constructor(private authService: AuthService) {
-    this.showLogout = this.authService.guest$.map(guest => guest != null);
+  constructor(private gs: GuestService, private auth: AuthService) {
+    this.showLogout = this.auth.isLoggedIn$;
   }
 
   ngOnInit() {}
 
+  private collapseMenu() {
+    const el = this.collapsibleElement.nativeElement;
+    if (el) {
+      $(el)['collapse']('hide');
+    }
+  }
+
+  @HostListener('click', ['$event.target'])
+  onClick(target: HTMLElement) {
+    if (target instanceof HTMLAnchorElement) {
+      this.collapseMenu();
+    }
+  }
+
   onLogout() {
-    this.authService.logout().catch(err => {});
+    this.auth.logout().catch(err => {});
   }
 }

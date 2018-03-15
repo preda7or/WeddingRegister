@@ -1,3 +1,5 @@
+import { HelloComponent } from './components/hello/hello.component';
+import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -10,76 +12,111 @@ import { SoSorryComponent } from './components/so-sorry/so-sorry.component';
 import { GuestAutoLoginGuard } from './guards/guest-autologin.guard';
 import { GuestComingGuard } from './guards/guest-coming.guard';
 import { GuestLoggedinGuard } from './guards/guest-loggedin.guard';
-
+import { BlankComponent } from './components/blank/blank.component';
+import { SoHappyComponent } from './components/so-happy/so-happy.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/login'
+    redirectTo: '/login',
   },
-  // {
-  //   path: ':id',
-  //   pathMatch: 'full',
-  //   redirectTo: '/login/:id'
-  // },
   {
     path: 'login',
     pathMatch: 'full',
-    component: PublicPageComponent,
-    canActivate: [GuestAutoLoginGuard]
+    children: [
+      {
+        outlet: 'intro',
+        path: '',
+        component: LoginComponent,
+      },
+      {
+        path: '',
+        component: BlankComponent,
+      },
+    ],
   },
   {
     path: 'login/:id',
-    component: PublicPageComponent,
-    canActivate: [GuestAutoLoginGuard]
+    children: [
+      {
+        outlet: 'intro',
+        path: '',
+        component: LoginComponent,
+      },
+      {
+        path: '',
+        component: BlankComponent,
+      },
+    ],
   },
   {
     path: 'in',
-    component: AuthenticatedPageComponent,
-    canActivateChild: [GuestLoggedinGuard],
-
+    // canActivateChild: [GuestLoggedinGuard],
     children: [
+      {
+        outlet: 'intro',
+        path: '',
+        component: HelloComponent,
+      },
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'sohappy'
+        redirectTo: 'sohappy',
       },
       {
         path: 'decision',
-        component: DecisionComponent
+        component: DecisionComponent,
       },
       {
         path: 'sohappy',
-        component: FormComponent,
         data: {
-          coming: { undefined: '/in/decision', false: '/in/sosorry', true: true }
+          coming: {
+            undefined: 'decision',
+            false: 'sosorry',
+            true: true,
+          },
         },
-        canActivate: [GuestComingGuard]
+        canActivate: [GuestComingGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: SoHappyComponent,
+          },
+          {
+            path: ':step',
+            component: FormComponent,
+          },
+        ],
       },
       {
         path: 'sosorry',
         component: SoSorryComponent,
         data: {
-          coming: { undefined: '/in/decision', false: true, true: '/in/sohappy' }
+          coming: {
+            undefined: 'decision',
+            false: true,
+            true: 'sohappy',
+          },
         },
-        canActivate: [GuestComingGuard]
-      }
-    ]
+        canActivate: [GuestComingGuard],
+      },
+    ],
   },
   {
     path: '**',
-    component: PageNotFoundComponent
-  }
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
-      routes //
-      // , { enableTracing: true } //
-    )
+      routes, //
+      // { enableTracing: true } //
+    ),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

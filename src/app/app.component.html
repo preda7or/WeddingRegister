@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<header [outlet]="introOutlet.isActivated && introOutlet.activatedRoute">
+    <app-top-nav></app-top-nav>
+    <!-- [@routerOutletState]="introOutlet.isActivated && introOutlet.activatedRoute && introOutlet.activatedRoute.component.name || true" -->
+    <app-intro>
+        <router-outlet name="intro" #introOutlet="outlet"></router-outlet>
+    </app-intro>
+</header>
+<!-- {{introOutlet|json}} -->
+<main>
+    <div class="container my-5">
+        <router-outlet></router-outlet>
+    </div>
+</main>
